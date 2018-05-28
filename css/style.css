@@ -28,8 +28,17 @@ td {
     width: 100%;
 }
 
+.fas {
+    color: #fd0;
+    text-shadow: 0 0 5px #fc0;
+}
+
+.far {
+    color: #fd0;
+}
+
 .card {
-    width: 100%;
+    width: calc(100% - 10%);
     height: 100%;
     font-size: 10vw;
     display: flex;
@@ -37,6 +46,9 @@ td {
     align-items: center;
     background: linear-gradient(140deg, #ade, #0ff, #0df);
     border-radius: 15px;
+    border-color: #000;
+    border-style: solid;
+    border-width: 5px;
 }
 
 #title {
@@ -70,5 +82,11 @@ td {
 #game-board {
     order: 3;
     width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#copyright {
     text-align: center;
 }
