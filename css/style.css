@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.text {
+    order: 0;
+    width: 100%;
+}
+
+.alt-text {
+    order: 1;
+    width: 100%;
+}
+
+#title {
+    order: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#game-app {
+    width: 100%;
+}
+
+#star-rating {
+    order: 0;
+    width: calc(100%/3);
+    text-align: center;
+}
+
+#move-counter {
+    order: 1;
+    width: calc(100%/3);
+    text-align: center;
+}
+
+#timer {
+    order: 2;
+    width: calc(100%/3);
+    text-align: center;
+}
