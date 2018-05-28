@@ -31,10 +31,12 @@ td {
 .card {
     width: 100%;
     height: 100%;
+    font-size: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(140deg, #ade, #0ff, #0df);
+    border-radius: 15px;
 }
 
 #title {
