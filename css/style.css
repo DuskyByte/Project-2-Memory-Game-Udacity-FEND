@@ -1,15 +1,13 @@
 body {
     margin: 5px;
+    background: #ccc;
 }
 
 table {
     width: 100%;
-    border: 1px solid #000;
+    border: 5px solid #000;
     border-spacing: 5px;
-}
-
-td {
-    height: calc(25vw - (37px/4));
+    background: #fff;
 }
 
 .container {
@@ -28,18 +26,19 @@ td {
     width: 100%;
 }
 
-.fas {
+.fas.fa-star {
     color: #fd0;
     text-shadow: 0 0 5px #fc0;
 }
 
-.far {
+.far.fa-star {
     color: #fd0;
+    text-shadow: 0 0 5px #000;
 }
 
-.card {
-    width: calc(100% - 10%);
-    height: 100%;
+.face-down {
+    width: calc(25vw - (95px / 4));
+    height: calc(25vw - (95px / 4));
     font-size: 10vw;
     display: flex;
     justify-content: center;
@@ -49,6 +48,28 @@ td {
     border-color: #000;
     border-style: solid;
     border-width: 5px;
+}
+
+.face-up {
+    width: calc(25vw - (95px / 4));
+    height: calc(25vw - (95px / 4));
+    font-size: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 15px;
+    border-color: #000;
+    border-style: solid;
+    border-width: 5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.shown {
+    visibility: show;
 }
 
 #title {
