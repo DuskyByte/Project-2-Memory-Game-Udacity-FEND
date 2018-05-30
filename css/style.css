@@ -94,7 +94,7 @@ table {
     text-align: center;
 }
 
-#timer {
+#timer-display {
     order: 2;
     width: calc(100%/3);
     text-align: center;

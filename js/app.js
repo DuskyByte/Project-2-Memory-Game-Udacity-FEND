@@ -1,12 +1,14 @@
 let timer = 0;
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    const gameBoardElement = document.getElementById("game-board");
+    gameBoardElement.addEventListener("click", clickInteration);
     const timerEvent = setInterval(startTimer, 1000);
 });
 
 function startTimer() {
     timer++;
-    document.getElementById("time").innerHTML = formatTime(timer);
+    document.getElementById("timer").innerHTML = formatTime(timer);
 }
 
 function formatTime(timer) {
@@ -23,4 +25,8 @@ function formatTime(timer) {
         seconds = "0" + seconds;
     }
     return hours + ":" + minutes + ":" + seconds;
+}
+
+function clickInteration(element) {
+    console.log(element.target + " was clicked");
 }
