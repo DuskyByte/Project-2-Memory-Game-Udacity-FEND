@@ -4,19 +4,26 @@ let flippedCards = 0;
 let delayFunction;
 let startGame = false;
 let moves = 0;
+let gameWon = false;
 
 document.addEventListener("DOMContentLoaded", function(event) {
     const gameBoardElement = document.getElementById("game-app");
     gameBoardElement.addEventListener("click", clickInteration);
 });
 
-function drawTimer() {
+function drawTimer(normalFunction) {
     timer++;
+    if (timer % 30 === 0 && normalFunction) {
+        updateRating(false);
+    }
     document.getElementById("timer").innerHTML = formatTime(timer);
 }
 
-function drawMoves() {
+function drawMoves(normalFunction) {
     moves++;
+    if (moves % 12 === 0 && normalFunction) {
+        updateRating(false);
+    }
     document.getElementById("moves").innerHTML = moves;
 }
 
@@ -39,7 +46,7 @@ function formatTime(timer) {
 function clickInteration(event) {
     //Starts the game
     if (startGame === false && event.target.classList.contains("card")) {
-        timerEvent = setInterval(drawTimer, 1000);
+        timerEvent = setInterval(drawTimer, 1000, true);
         shuffleCards();
         startGame = true;
     }
@@ -47,11 +54,13 @@ function clickInteration(event) {
     if (event.target.nodeName === "BUTTON") {
         clearTimeout(timerEvent);
         timer = -1;
-        drawTimer(timer);
+        drawTimer(false);
         moves = -1;
-        drawMoves(moves);
+        drawMoves(false);
         flippedCards = 0;
         returnCards();
+        winGame();
+        updateRating(true);
         startGame = false;
     }
     //Basic interation for the game
@@ -74,7 +83,7 @@ function flipCards(event) {
         }
     }
     if (flippedCards >= 2) {
-        drawMoves();
+        drawMoves(true);
         delayFunction = setTimeout(checkCards, 700);
     }
 }
@@ -90,6 +99,7 @@ function checkCards(inGame) {
         } else if (checkedoutCard.classList.contains("matched-cards")) {
             matchedCardList.push(checkedoutCard);
             if (matchedCardList.length === 14) {
+                gameWon = true;
                 winGame();
             }
         }
@@ -141,17 +151,19 @@ function shuffleCards() {
 }
 
 function winGame() {
-    clearTimeout(timerEvent);
-    document.getElementById("win-text").classList.toggle("removed");
-    document.getElementById("win-text").classList.toggle("div-win");
-    document.getElementById("star-rating").classList.toggle("div-third");
-    document.getElementById("star-rating").classList.toggle("div-win");
-    document.getElementById("move-counter").classList.toggle("div-third");
-    document.getElementById("move-counter").classList.toggle("div-win");
-    document.getElementById("timer-display").classList.toggle("div-third");
-    document.getElementById("timer-display").classList.toggle("div-win");
-    document.getElementById("game-board").classList.toggle("div-full");
-    document.getElementById("game-board").classList.toggle("removed");
+    if (gameWon == true) {
+        clearTimeout(timerEvent);
+        document.getElementById("win-text").classList.toggle("removed");
+        document.getElementById("win-text").classList.toggle("div-win");
+        document.getElementById("star-rating").classList.toggle("div-third");
+        document.getElementById("star-rating").classList.toggle("div-win");
+        document.getElementById("move-counter").classList.toggle("div-third");
+        document.getElementById("move-counter").classList.toggle("div-win");
+        document.getElementById("timer-display").classList.toggle("div-third");
+        document.getElementById("timer-display").classList.toggle("div-win");
+        document.getElementById("game-board").classList.toggle("div-full");
+        document.getElementById("game-board").classList.toggle("removed");
+    }
 }
 
 function returnCards() {
@@ -169,6 +181,30 @@ function returnCards() {
             checkedoutCard = checkedoutCard.firstElementChild;
             checkedoutCard.classList.toggle("shown");
             checkedoutCard.classList.toggle("hidden");
+        }
+    }
+}
+
+function updateRating(reversed) {
+    let starList = document.getElementById("stars").childNodes;
+    let solidStar;
+    if (!reversed) {
+        for (let starNumber = 0; starNumber <= starList.length - 1; starNumber++) {
+            if (starList[starNumber].classList.contains("fas")) {
+                solidStar = starList[starNumber];
+            }
+        }
+        if (solidStar != undefined) {
+            solidStar.classList.toggle("fas");
+            solidStar.classList.toggle("far");
+        }
+    } else {
+        for (let starNumber = 0; starNumber <= starList.length - 1; starNumber++) {
+            if (starList[starNumber].classList.contains("far")) {
+                solidStar = starList[starNumber];
+                solidStar.classList.toggle("fas");
+                solidStar.classList.toggle("far");
+            }
         }
     }
 }

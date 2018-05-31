@@ -11,3 +11,7 @@ A game based on Hasbro Gaming's Orginial Memory card game.
   * If the cards are a pair, they remained revealed.
   * If the cards are not a pair, they are hidden again.
 3. You continue to make moves till all cards are revealed.
+
+### Dependencies
+
+1. Utilizies Font Awesome (https://fontawesome.com)
