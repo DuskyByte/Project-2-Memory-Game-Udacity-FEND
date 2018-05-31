@@ -59,7 +59,8 @@ function clickInteration(event) {
         drawMoves(false);
         flippedCards = 0;
         returnCards();
-        winGame();
+        winGame(gameWon);
+        gameWon = false;
         updateRating(true);
         startGame = false;
     }
@@ -99,8 +100,7 @@ function checkCards(inGame) {
         } else if (checkedoutCard.classList.contains("matched-cards")) {
             matchedCardList.push(checkedoutCard);
             if (matchedCardList.length === 14) {
-                gameWon = true;
-                winGame();
+                winGame(true);
             }
         }
     }
@@ -150,8 +150,8 @@ function shuffleCards() {
     }
 }
 
-function winGame() {
-    if (gameWon == true) {
+function winGame(displayGameWon) {
+    if (displayGameWon == true) {
         clearTimeout(timerEvent);
         document.getElementById("win-text").classList.toggle("removed");
         document.getElementById("win-text").classList.toggle("div-win");
@@ -163,6 +163,7 @@ function winGame() {
         document.getElementById("timer-display").classList.toggle("div-win");
         document.getElementById("game-board").classList.toggle("div-full");
         document.getElementById("game-board").classList.toggle("removed");
+        gameWon = true;
     }
 }
 
