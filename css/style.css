@@ -81,9 +81,34 @@ table {
 .hidden {
     visibility: hidden;
 }
-
 .shown {
     visibility: show;
+}
+
+.removed {
+    display: none;
+}
+
+.div-third {
+    order: 2;
+    width: calc(100%/3);
+    text-align: center;
+}
+
+.div-full {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.div-win {
+    width: 100%;
+    text-align: center;
+    font-size: 10vw;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #title {
@@ -94,32 +119,6 @@ table {
 
 #game-app {
     width: 100%;
-}
-
-#star-rating {
-    order: 0;
-    width: calc(100%/3);
-    text-align: center;
-}
-
-#move-counter {
-    order: 1;
-    width: calc(100%/3);
-    text-align: center;
-}
-
-#timer-display {
-    order: 2;
-    width: calc(100%/3);
-    text-align: center;
-}
-
-#game-board {
-    order: 3;
-    width: 100%;
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 #copyright {

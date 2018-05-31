@@ -1,4 +1,5 @@
 let timer = 0;
+let timerEvent;
 let flippedCards = 0;
 let delayFunction;
 let startGame = false;
@@ -38,7 +39,7 @@ function formatTime(timer) {
 function clickInteration(event) {
     //Starts the game
     if (startGame === false) {
-        const timerEvent = setInterval(drawTimer, 1000);
+        timerEvent = setInterval(drawTimer, 1000);
         shuffleCards();
         startGame = true;
     }
@@ -51,7 +52,7 @@ function clickInteration(event) {
 function flipCards(event) {
     let element = event.target;
     if (element.nodeName === "DIV") {
-        //Flips card 'face-up' if not already.
+        //Changes card 'face-up' if is not already
         if (element.classList.contains("face-down")) {
             element.classList.toggle("face-down");
             element.classList.toggle("face-up");
@@ -69,16 +70,22 @@ function flipCards(event) {
 
 function checkCards() {
     let checkedoutCardList = [];
+    let matchedCardList = [];
     //Builds array from 'face-up' cards
     for (let cardNumber = 1; cardNumber <= 16; cardNumber++) {
         let checkedoutCard = document.getElementById("card-" + cardNumber);
         if (checkedoutCard.classList.contains("face-up")) {
             checkedoutCardList.push(checkedoutCard);
+        } else if (checkedoutCard.classList.contains("matched-cards")) {
+            matchedCardList.push(checkedoutCard);
+            if (matchedCardList.length === 14) {
+                winGame();
+            }
         }
     }
     //Checks if 'face-up' cards match
     if (checkedoutCardList[0].firstElementChild.classList.value === checkedoutCardList[1].firstElementChild.classList.value) {
-        //Updates matching cards to 'matched-cards'
+        //Updates matching cards to 'matched-cards' css style
         for (let cardNumber = 0; cardNumber < checkedoutCardList.length; cardNumber++) {
             checkedoutCard = checkedoutCardList[cardNumber];
             checkedoutCard.classList.toggle("face-up");
@@ -120,4 +127,18 @@ function shuffleCards() {
         let checkedoutCard = document.getElementById("card-" + cardNumber);
         checkedoutCard.firstElementChild.outerHTML = cardFaces[cardNumber - 1];
     }
+}
+
+function winGame() {
+    clearTimeout(timerEvent);
+    document.getElementById("win-text").classList.toggle("removed");
+    document.getElementById("win-text").classList.toggle("div-win");
+    document.getElementById("star-rating").classList.toggle("div-third");
+    document.getElementById("star-rating").classList.toggle("div-win");
+    document.getElementById("move-counter").classList.toggle("div-third");
+    document.getElementById("move-counter").classList.toggle("div-win");
+    document.getElementById("timer-display").classList.toggle("div-third");
+    document.getElementById("timer-display").classList.toggle("div-win");
+    document.getElementById("game-board").classList.toggle("div-full");
+    document.getElementById("game-board").classList.toggle("removed");
 }

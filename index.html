@@ -6,7 +6,7 @@
         <title>
             Jeff's Memory Game
         </title>
-        <!-- TODO: Style the game app. -->
+        <!-- Style for the game app. -->
         <link rel="stylesheet" href="css/style.css">
         <!-- The following font and css is provided by Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -19,24 +19,27 @@
                 Jeff's Memory Game
             </h1>
         </header>
-        <!-- TODO: Build a game board. -->
+        <!-- Game board. -->
         <section id="game-app" class="container">
             <!-- TODO: Dynamic formating for mobile, tablet, laptop, desktop, tv -->
-            <!-- TODO: Build a display for the star rating. -->
-            <div id="star-rating" class="container">
+            <div id="win-text" class="removed">
+                <span class="text">Congratulations, You Won!</span>
+            </div>
+            <!-- Display for the star rating. -->
+            <div id="star-rating" class="container div-third">
                 <!-- Creates 5 soild stars using Font Awesome -->
                 <span class="text">Rating: </span><span id="stars" class="alt-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
             </div>
-            <!-- TODO: Build a display for the move counter. -->
-            <div id="move-counter" class="container">
+            <!-- Display for the move counter. -->
+            <div id="move-counter" class="container div-third">
                 <span class="text">Moves: </span><span id="moves" class="alt-text">0</span>
             </div>
             <!-- Display for the timer. -->
-            <div id="timer-display" class="container">
+            <div id="timer-display" class="container div-third">
                 <span class="text">Timer: </span><span id="timer" class="alt-text">00:00:00</span>
             </div>
-            <!-- TODO: Build a display for the game board. -->
-            <div id="game-board">
+            <!-- Display for the game board. -->
+            <div id="game-board" class="div-full">
                 <table>
                     <tr>
                         <td>
