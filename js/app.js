@@ -190,7 +190,7 @@ function updateRating(reversed) {
     let starList = document.getElementById("stars").childNodes;
     let solidStar;
     if (!reversed) {
-        for (let starNumber = 0; starNumber <= starList.length - 1; starNumber++) {
+        for (let starNumber = 1; starNumber <= starList.length - 1; starNumber++) {
             if (starList[starNumber].classList.contains("fas")) {
                 solidStar = starList[starNumber];
             }
