@@ -90,13 +90,13 @@ table {
 }
 
 .div-third {
-    order: 2;
+    order: 0;
     width: calc(100%/3);
     text-align: center;
 }
 
 .div-full {
-    order: 3;
+    order: 1;
     width: 100%;
     text-align: center;
     padding-top: 5px;
@@ -123,4 +123,13 @@ table {
 
 #copyright {
     text-align: center;
+    padding-top: 5px;
+}
+
+#reset-button {
+    order: 1;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

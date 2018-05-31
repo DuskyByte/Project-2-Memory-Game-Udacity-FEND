@@ -6,7 +6,7 @@ let startGame = false;
 let moves = 0;
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    const gameBoardElement = document.getElementById("game-board");
+    const gameBoardElement = document.getElementById("game-app");
     gameBoardElement.addEventListener("click", clickInteration);
 });
 
@@ -38,10 +38,21 @@ function formatTime(timer) {
 
 function clickInteration(event) {
     //Starts the game
-    if (startGame === false) {
+    if (startGame === false && event.target.classList.contains("card")) {
         timerEvent = setInterval(drawTimer, 1000);
         shuffleCards();
         startGame = true;
+    }
+    //Resets the game
+    if (event.target.nodeName === "BUTTON") {
+        clearTimeout(timerEvent);
+        timer = -1;
+        drawTimer(timer);
+        moves = -1;
+        drawMoves(moves);
+        flippedCards = 0;
+        returnCards();
+        startGame = false;
     }
     //Basic interation for the game
     if (flippedCards <= 1) {
@@ -51,7 +62,7 @@ function clickInteration(event) {
 
 function flipCards(event) {
     let element = event.target;
-    if (element.nodeName === "DIV") {
+    if (element.classList.contains("card")) {
         //Changes card 'face-up' if is not already
         if (element.classList.contains("face-down")) {
             element.classList.toggle("face-down");
@@ -68,7 +79,7 @@ function flipCards(event) {
     }
 }
 
-function checkCards() {
+function checkCards(inGame) {
     let checkedoutCardList = [];
     let matchedCardList = [];
     //Builds array from 'face-up' cards
@@ -141,4 +152,23 @@ function winGame() {
     document.getElementById("timer-display").classList.toggle("div-win");
     document.getElementById("game-board").classList.toggle("div-full");
     document.getElementById("game-board").classList.toggle("removed");
+}
+
+function returnCards() {
+    for (let cardNumber = 1; cardNumber <= 16; cardNumber++) {
+        let checkedoutCard = document.getElementById("card-" + cardNumber);
+        if (checkedoutCard.classList.contains("face-up")) {
+            checkedoutCard.classList.toggle("face-up");
+            checkedoutCard.classList.toggle("face-down");
+            checkedoutCard = checkedoutCard.firstElementChild;
+            checkedoutCard.classList.toggle("shown");
+            checkedoutCard.classList.toggle("hidden");
+        } else if (checkedoutCard.classList.contains("matched-cards")) {
+            checkedoutCard.classList.toggle("matched-cards");
+            checkedoutCard.classList.toggle("face-down");
+            checkedoutCard = checkedoutCard.firstElementChild;
+            checkedoutCard.classList.toggle("shown");
+            checkedoutCard.classList.toggle("hidden");
+        }
+    }
 }
